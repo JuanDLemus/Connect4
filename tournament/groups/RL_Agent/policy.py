@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import os
+import gzip
 from connect4.policy import Policy
 from connect4.connect_state import ConnectState
 from typing import Tuple, Any
@@ -13,14 +14,14 @@ class RLPolicy(Policy):
         self.training_mode = training_mode
         # Parámetros de Q-Learning
         self.learning_rate = 0.1  # Alpha: Tasa de aprendizaje
-        self.discount_factor = 0.95 # Gamma: Factor de descuento para recompensas futuras
+        self.discount_factor = 0.99 # Gamma: Factor de descuento para recompensas futuras
         self.epsilon = 1.0        # Epsilon: Tasa de exploración inicial
-        self.epsilon_decay = 0.9995 # Tasa de decaimiento de epsilon
+        self.epsilon_decay = 0.9999 # Tasa de decaimiento de epsilon
         self.epsilon_min = 0.01   # Tasa de exploración mínima
 
         # La Q-Table se cargará o creará vacía
         self.q_table: dict[Tuple[Any, int], float] = {}
-        self.q_table_path = os.path.join(os.path.dirname(__file__), 'q_table.pkl')
+        self.q_table_path = os.path.join(os.path.dirname(__file__), 'q_table.pkl.gz') # <-- CAMBIA LA EXTENSIÓN
 
     def _get_state_key(self, board: np.ndarray) -> Tuple:
         """Convierte el tablero (estado) en una clave inmutable para el diccionario Q-Table."""
@@ -32,9 +33,11 @@ class RLPolicy(Policy):
         Si no está en modo entrenamiento, desactiva la exploración.
         """
         if os.path.exists(self.q_table_path):
-            with open(self.q_table_path, 'rb') as f:
+            # --- MODIFICADO PARA LEER GZIP ---
+            with gzip.open(self.q_table_path, 'rb') as f:
                 self.q_table = pickle.load(f)
-        
+            print(f"Q-Table comprimida cargada desde {self.q_table_path}")
+       
         if not self.training_mode:
             self.epsilon = 0  # En modo de juego/evaluación, solo explotamos el conocimiento
 
@@ -94,5 +97,6 @@ class RLPolicy(Policy):
 
     def save_q_table(self):
         """Guarda la Q-Table en un archivo."""
-        with open(self.q_table_path, 'wb') as f:
+        # --- MODIFICADO PARA ESCRIBIR GZIP ---
+        with gzip.open(self.q_table_path, 'wb') as f:
             pickle.dump(self.q_table, f)
