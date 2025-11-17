@@ -2,8 +2,12 @@ import numpy as np
 from tqdm import tqdm
 
 from connect4.connect_state import ConnectState
-from groups.RL_Agent.policy import RLPolicy
-from groups.Group_A.policy import Aha # Agente Aleatorio
+from groups.Player8.policy import Random
+from groups.Player1.policy import RandomBeater1
+from groups.PlayerCP1.policy import RLPolicy as RLP1
+from groups.PlayerMCTS1.policy import MCTSPolicy as MCTS1
+
+
 
 # --- PARÁMETROS DE EVALUACIÓN ---
 NUM_GAMES = 1000  # Número de partidas para evaluar el rendimiento
@@ -16,13 +20,12 @@ def evaluate():
     # 1. Inicializar los agentes
     # Cargar nuestro agente RL entrenado en modo de EVALUACIÓN (no entrenamiento)
     # training_mode=False asegura que epsilon sea 0 y solo explote el conocimiento
-    rl_agent = RLPolicy(training_mode=False)
+    rl_agent = MCTS1()
     rl_agent.mount() # Carga la Q-Table entrenada
-    print(f"Q-Table cargada con {len(rl_agent.q_table)} estados aprendidos.")
 
 
     # El agente oponente que juega al azar
-    random_agent = Aha()
+    random_agent = Random()
     random_agent.mount()
 
     # 2. Contadores de resultados

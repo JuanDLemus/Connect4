@@ -2,11 +2,13 @@ import numpy as np
 from tqdm import tqdm
 
 from connect4.connect_state import ConnectState
-from groups.RL_Agent.policy import RLPolicy
-from groups.Group_A.policy import Aha # Agente Aleatorio
+from groups.Player8.policy import Random
+from groups.Player1.policy import RandomBeater1
+from groups.PlayerCP1.policy import RLPolicy as RLP1
+from groups.PlayerMCTS1.policy import MCTSPolicy as MCTS1
 
 # --- PARÁMETROS DE ENTRENAMIENTO ---
-NUM_EPISODES = 50000  # Número de partidas para entrenar
+NUM_EPISODES = 1000000  # Número de partidas para entrenar
 PRINT_EVERY = 1000   # Imprimir progreso cada N partidas
 SAVE_EVERY = 5000    # Guardar la Q-Table cada N partidas
 
@@ -21,11 +23,11 @@ def train():
     
     # 1. Inicializar los agentes
     # Nuestro agente RL en modo entrenamiento
-    rl_agent = RLPolicy(training_mode=True)
+    rl_agent = RLP1(training_mode=True)
     rl_agent.mount() # Carga la Q-Table si existe, si no, empieza de cero
 
     # El agente oponente que juega al azar
-    random_agent = Aha()
+    random_agent = Random()
     random_agent.mount()
 
     print("Iniciando entrenamiento del agente RL...")
