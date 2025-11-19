@@ -144,3 +144,6 @@ Carlos Andrés Zuluaga Mora - 0000272129
 - Se crearon copias de las políticas actuales, Random, RandomBeater, RLP, MCTS hasta 16 jugadores ya que constantemente aparecía error de Invalid Match: 2 BYEs match... Jugando con esta cantidad de jugadores siempre ganaba alguna copia de MCTS así que se decidió subir esa policy al Gradescope
 
 - A pesar del tiempo, logra cumplir el Gradescope extendiendo el límite de tiempo.
+
+### **Martes 18:**
+- Actualizaron el Gradescope, el MCTS tarda demasiado en ejecutar, pero el RandomBeater original, sí pasa la prueba, nos quemados con ese mejor.
