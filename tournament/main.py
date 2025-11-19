@@ -15,3 +15,4 @@ champion = run_tournament(
     shuffle=True,
 )
 print("Champion:", champion)
+
