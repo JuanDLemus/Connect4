@@ -2,9 +2,9 @@ import numpy as np
 from tqdm import tqdm
 
 from connect4.connect_state import ConnectState
-from groups.Player8.policy import Random
-from groups.Player1.policy import RandomBeater1
-from groups.PlayerCP1.policy import RLPolicy as RLP1
+from groups.PlayerRandom1.policy import Random
+from groups.PlayerRules1.policy import RandomBeater1
+from groups.PlayerRL1.policy import RLPolicy as RLP1
 from groups.PlayerMCTS1.policy import MCTSPolicy as MCTS1
 
 
@@ -20,7 +20,7 @@ def evaluate():
     # 1. Inicializar los agentes
     # Cargar nuestro agente RL entrenado en modo de EVALUACIÓN (no entrenamiento)
     # training_mode=False asegura que epsilon sea 0 y solo explote el conocimiento
-    rl_agent = MCTS1()
+    rl_agent = RandomBeater1()
     rl_agent.mount() # Carga la Q-Table entrenada
 
 

@@ -2,21 +2,21 @@ import numpy as np
 from tqdm import tqdm
 
 from connect4.connect_state import ConnectState
-from groups.Player8.policy import Random
-from groups.Player1.policy import RandomBeater1
-from groups.PlayerCP1.policy import RLPolicy as RLP1
+from groups.PlayerRandom1.policy import Random
+from groups.PlayerRules1.policy import RandomBeater1
+from groups.PlayerRL1.policy import RLPolicy as RLP1
 from groups.PlayerMCTS1.policy import MCTSPolicy as MCTS1
 
 # --- PARÁMETROS DE ENTRENAMIENTO ---
-NUM_EPISODES = 1000000  # Número de partidas para entrenar
+NUM_EPISODES = 10000  # Número de partidas para entrenar
 PRINT_EVERY = 1000   # Imprimir progreso cada N partidas
-SAVE_EVERY = 5000    # Guardar la Q-Table cada N partidas
+SAVE_EVERY = 500    # Guardar la Q-Table cada N partidas
 
 # --- RECOMPENSAS ---
 REWARD_WIN = 20
 REWARD_LOSE = -20
-REWARD_DRAW = -1
-REWARD_STEP = -0.05 # Pequeña penalización por cada movimiento para incentivar victorias rápidas
+REWARD_DRAW = -2
+REWARD_STEP = -0.1 # Pequeña penalización por cada movimiento para incentivar victorias rápidas
 
 def train():
     """Función principal para entrenar el agente de Q-Learning."""
