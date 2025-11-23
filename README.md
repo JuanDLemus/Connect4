@@ -147,3 +147,6 @@ Carlos Andrés Zuluaga Mora - 0000272129
 
 ### **Martes 18:**
 - Actualizaron el Gradescope, el MCTS tarda demasiado en ejecutar, pero el RandomBeater original, sí pasa la prueba, nos quemados con ese mejor.
+
+### **Domingo 23:**
+- Se añade el documento que incluye la guía de uso y los datos necesarios para ejecuatar los archivos del torneo. Dicha información se encuentra en el documento de tal nombre, cuyo enlace es el siguiente: https://github.com/JuanDLemus/Connect4/blob/ee2a1161172a88199a09c9a05314a69fc4c7eaaa/Gu%C3%ADa%20de%20uso%20y%20datos%20necesarios%20para%20ejecutar.docx
