@@ -6,6 +6,7 @@ from groups.PlayerRandom1.policy import Random
 from groups.PlayerRules1.policy import RandomBeater1
 from groups.PlayerRL1.policy import RLPolicy as RLP1
 from groups.PlayerMCTS1.policy import MCTSPolicy as MCTS1
+from groups.PlayerRBP1.policy import RandomBeaterPro as RBP1
 
 
 
@@ -20,7 +21,7 @@ def evaluate():
     # 1. Inicializar los agentes
     # Cargar nuestro agente RL entrenado en modo de EVALUACIÓN (no entrenamiento)
     # training_mode=False asegura que epsilon sea 0 y solo explote el conocimiento
-    rl_agent = RandomBeater1()
+    rl_agent = RBP1()
     rl_agent.mount() # Carga la Q-Table entrenada
 
 
